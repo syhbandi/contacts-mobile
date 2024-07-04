@@ -53,6 +53,7 @@ const SignIn = () => {
               placeholder="Username"
               value={username}
               onChangeText={(text) => setUsername(text)}
+              autoCapitalize="none"
             />
             <TextInput
               className="h-12 bg-white border border-neutral-200 rounded-xl px-3 font-[NunitoMedium]"

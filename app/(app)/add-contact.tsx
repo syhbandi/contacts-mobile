@@ -41,6 +41,7 @@ const AddContact = () => {
               Add Contact
             </Text>
           ),
+          headerShadowVisible: false,
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -57,6 +58,7 @@ const AddContact = () => {
               onChangeText={(text) =>
                 setFormData((current) => ({ ...current, first_name: text }))
               }
+              autoComplete="off"
             />
           </View>
           <View className="space-y-2">
@@ -71,6 +73,7 @@ const AddContact = () => {
               onChangeText={(text) =>
                 setFormData((current) => ({ ...current, last_name: text }))
               }
+              autoComplete="off"
             />
           </View>
           <View className="space-y-2">
@@ -86,6 +89,7 @@ const AddContact = () => {
               onChangeText={(text) =>
                 setFormData((current) => ({ ...current, email: text }))
               }
+              autoComplete="off"
             />
           </View>
           <View className="space-y-2">

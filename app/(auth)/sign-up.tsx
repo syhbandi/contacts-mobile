@@ -46,16 +46,20 @@ const SignUp = () => {
               placeholder="Name"
               value={name}
               onChangeText={(text) => setName(text)}
+              autoComplete="off"
             />
             <TextInput
               className="h-12 bg-white border border-neutral-200 rounded-xl px-3 font-[NunitoMedium]"
               placeholder="Username"
               value={username}
               onChangeText={(text) => setUsername(text)}
+              autoComplete="off"
+              autoCapitalize="none"
             />
             <TextInput
               className="h-12 bg-white border border-neutral-200 rounded-xl px-3 font-[NunitoMedium]"
               placeholder="Password"
+              secureTextEntry
               value={password}
               onChangeText={(text) => setPassword(text)}
             />
@@ -64,7 +68,7 @@ const SignUp = () => {
               onPress={handleSignUp}
             >
               {loading ? (
-                <ActivityIndicator size={"small"} color={"white"} />
+                <ActivityIndicator size={"large"} color={"white"} />
               ) : (
                 <Text className="font-[NunitoBold] text-base text-white">
                   Sign Up
