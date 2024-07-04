@@ -26,8 +26,13 @@ const SignIn = () => {
       await signIn(username, password);
       setLoading(false);
     } catch (error: any) {
-      Alert.alert("Ups!", error?.message);
-      console.log(error.response.data);
+      let message = error.message;
+
+      if (error?.response?.data) {
+        message = error?.response?.data?.errors?.messages;
+      }
+
+      Alert.alert("Ups!", message);
       setLoading(false);
     } finally {
       setLoading(false);
@@ -52,6 +57,7 @@ const SignIn = () => {
             <TextInput
               className="h-12 bg-white border border-neutral-200 rounded-xl px-3 font-[NunitoMedium]"
               placeholder="Password"
+              secureTextEntry={true}
               value={password}
               onChangeText={(text) => setPassword(text)}
             />

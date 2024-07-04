@@ -20,6 +20,7 @@ type ContextType = {
     password: string;
   }) => Promise<void>;
   signOut: () => Promise<void>;
+  loading?: boolean;
 };
 
 const authContext = createContext<ContextType>({
@@ -27,6 +28,7 @@ const authContext = createContext<ContextType>({
   async signIn() {},
   async signUp() {},
   async signOut() {},
+  loading: true,
 });
 
 export function useAuth() {
@@ -35,15 +37,17 @@ export function useAuth() {
 
 export default function AuthProvider(props: PropsWithChildren) {
   const [user, setUser] = useState<any>();
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     SecureStore.getItemAsync("session")
       .then((value) => {
         setUser(JSON.parse(value!));
         console.log(value);
+        setLoading(false);
       })
       .catch(() => {
         console.log("tidak dapat key");
+        setLoading(false);
       });
   }, []);
 
@@ -90,8 +94,9 @@ export default function AuthProvider(props: PropsWithChildren) {
       signIn,
       signUp,
       signOut,
+      loading,
     }),
-    [user, signIn, signUp, signOut]
+    [user, signIn, signUp, signOut, loading]
   );
 
   return (
