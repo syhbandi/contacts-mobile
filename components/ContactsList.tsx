@@ -22,6 +22,8 @@ const ContactsList = ({ search }: { search?: string }) => {
   } = usePaginatedData(search);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  console.log(data?.pages);
+
   const loadMore = () => {
     if (hasNextPage) {
       fetchNextPage();
@@ -47,8 +49,10 @@ const ContactsList = ({ search }: { search?: string }) => {
 
   if (isError) {
     return (
-      <View>
-        <Text>Error: {JSON.stringify(error.message)}</Text>
+      <View className="px-5">
+        <Text className="font-[NunitoSemiBold] text-red-600 text-center">
+          Oops! an error accured, please try again
+        </Text>
       </View>
     );
   }
@@ -65,6 +69,13 @@ const ContactsList = ({ search }: { search?: string }) => {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }
+        ListEmptyComponent={() => (
+          <View className="px-5">
+            <Text className="font-[NunitoSemiBold] text-neutral-600 text-center text-lg">
+              Oops! no contacts found
+            </Text>
+          </View>
+        )}
       />
     </View>
   );
