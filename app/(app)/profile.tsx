@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Stack } from "expo-router";
-import useGetCurrentUser from "@/hooks/contacts/useGetCurrentUser";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import { useAuth } from "@/context/AuthContext";
 
 const Profile = () => {
@@ -68,9 +68,13 @@ const Profile = () => {
               className="rounded-xl h-12 bg-blue-600 items-center justify-center mt-5"
               onPress={handleSignOut}
             >
-              <Text className="font-[NunitoSemiBold] text-white text-lg">
-                Sign Out
-              </Text>
+              {loading ? (
+                <ActivityIndicator size={"large"} color={"white"} />
+              ) : (
+                <Text className="font-[NunitoSemiBold] text-white text-lg">
+                  Sign Out
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
         </ScrollView>
