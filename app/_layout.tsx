@@ -2,6 +2,7 @@ import AuthProvider from "@/context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
 import { Slot, SplashScreen } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
@@ -27,6 +28,7 @@ export default function RootLayout() {
   }
   return (
     <QueryClientProvider client={queryClient}>
+      <StatusBar style="dark" />
       <AuthProvider>
         <Slot />
       </AuthProvider>
