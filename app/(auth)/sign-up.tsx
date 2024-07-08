@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useAuth } from "@/context/AuthContext";
 import { Link } from "expo-router";
+import { AxiosError } from "axios";
 
 const SignUp = () => {
   const { signUp } = useAuth();
@@ -26,9 +27,18 @@ const SignUp = () => {
     setLoading(true);
     try {
       await signUp({ username, password, name });
-    } catch (error) {
-      Alert.alert("Ooops!", "gagal");
-      console.log(error);
+      setLoading(false);
+    } catch (error: any) {
+      let message = error.message;
+
+      if (error.response.data.errors.username) {
+        message = error.response.data.errors.username;
+      }
+
+      Alert.alert("Ooops!", message);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 

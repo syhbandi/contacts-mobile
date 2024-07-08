@@ -21,6 +21,11 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
+    if (!username || !password) {
+      Alert.alert("Oops!", "Invalid input");
+      return;
+    }
+
     setLoading(true);
     try {
       await signIn(username, password);
@@ -28,11 +33,11 @@ const SignIn = () => {
     } catch (error: any) {
       let message = error.message;
 
-      if (error?.response?.data) {
-        message = error?.response?.data?.errors?.messages;
+      if (error.response.data) {
+        message = error.response.data.errors?.messages;
       }
 
-      Alert.alert("Ups!", message);
+      Alert.alert("Oops!", message);
       setLoading(false);
     } finally {
       setLoading(false);
