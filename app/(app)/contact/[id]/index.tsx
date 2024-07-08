@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import useGetContactById from "@/hooks/contacts/useGetContactById";
 import { Feather } from "@expo/vector-icons";
 
@@ -16,7 +16,19 @@ const Detail = () => {
   const { data, isLoading, isError } = useGetContactById(id!);
   return (
     <View className="flex-1 bg-white">
-      <Stack.Screen options={{ headerShadowVisible: false, title: "" }} />
+      <Stack.Screen
+        options={{
+          headerShadowVisible: false,
+          title: "",
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => router.push(`/contact/${id}/edit`)}
+            >
+              <Feather name="edit-2" size={20} color={"gray"} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       {isLoading ? (
         <ActivityIndicator size={"large"} color={"blue"} />
       ) : isError ? (

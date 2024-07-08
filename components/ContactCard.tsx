@@ -7,7 +7,7 @@ const ContactCard = ({ contact }: { contact: any }) => {
   return (
     <TouchableOpacity
       className="flex-row items-center px-5 py-3 space-x-3 border-b border-neutral-100"
-      onPress={() => router.push("(app)/" + contact.id)}
+      onPress={() => router.push("/contact/" + contact.id)}
     >
       <Image
         source={{
@@ -16,7 +16,10 @@ const ContactCard = ({ contact }: { contact: any }) => {
         className="h-12 w-12 rounded-full"
       />
       <View className="flex-1">
-        <Text className="font-[NunitoSemiBold] text-neutral-800 text-lg">
+        <Text
+          className="font-[NunitoSemiBold] text-neutral-800 text-lg"
+          numberOfLines={1}
+        >
           {contact.first_name} {contact.last_name}
         </Text>
         <Text className="font-[NunitoSemiBold] text-neutral-400">

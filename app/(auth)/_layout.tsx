@@ -9,7 +9,7 @@ const AuthLayout = () => {
   if (user) return <Redirect href={"/"} />;
 
   return (
-    <Stack>
+    <Stack screenOptions={{ animation: "ios" }}>
       <Stack.Screen name="sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="sign-up" options={{ headerShown: false }} />
     </Stack>

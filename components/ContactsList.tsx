@@ -22,8 +22,6 @@ const ContactsList = ({ search }: { search?: string }) => {
   } = usePaginatedData(search);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  console.log(data?.pages);
-
   const loadMore = () => {
     if (hasNextPage) {
       fetchNextPage();

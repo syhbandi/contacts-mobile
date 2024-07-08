@@ -14,7 +14,7 @@ import {
   createContactType,
 } from "@/hooks/contacts/useCreateContact";
 
-const AddContact = () => {
+const Create = () => {
   const [formData, setFormData] = useState<createContactType>({
     first_name: "",
     last_name: "",
@@ -126,4 +126,4 @@ const AddContact = () => {
   );
 };
 
-export default AddContact;
+export default Create;

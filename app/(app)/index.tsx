@@ -45,7 +45,7 @@ const Home = () => {
           ),
           headerRight: () => (
             <View className="flex-row space-x-3 items-center">
-              <Link href={"/(app)/add-contact"} asChild>
+              <Link href={"/contact/create"} asChild>
                 <Feather name="plus" size={24} color={"blue"} />
               </Link>
               <TouchableOpacity onPress={() => router.push("/profile")}>
